@@ -11,7 +11,6 @@ for tick in parse.TICKERS:
 	data.averages[tick] = []
 
 def mainloop():
-	maintime = time.time()
 	try:
 		data.tickers = parse.getTickers()
 		try:
@@ -37,10 +36,8 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
-			if (time.time() - maintime > 5):
-				running = False
 			starttime = time.time()
-			
+
 			try:
 				#Update data from server
 				try:
@@ -48,7 +45,7 @@ def mainloop():
 					for t in data.tickers:
 						data.my_securities[t].append(ms[t])
 				except:
-					print(1)	
+					print(1)
 				try:
 					s = parse.securities()
 					for t in data.tickers:
@@ -70,7 +67,9 @@ def mainloop():
 			except:
 				print("Data download failed")
 			#Run algorithm
+
 			try:
+
 				orders = algorithm.algorithm(data.tickers, data.prices, data.averages)
 			except:
 				print("Algo failed")
