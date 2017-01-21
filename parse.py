@@ -11,10 +11,9 @@ def getTickers():
         i += 4
     return secList
 
-TICKERS = getTickers()
 
-
-
+while(time() < nextSecond) {}
+nextSec +=1
 
 def myCash():
     myCashSt = client.run(USERNAME, PASSWORD, "MY_CASH")
@@ -37,7 +36,6 @@ def mySecurities():
 
 
 def myOrders():
-    myOders = []
     myOrdersSt = client.run(USERNAME, PASSWORD, "MY_ORDERS")
     myOrders = myOrdersSt.split(' ')[1:]
     orders = {}
@@ -62,7 +60,6 @@ def securities():
 
 
 def orders(security):
-    myOders = []
     myOrdersSt = client.run(USERNAME, PASSWORD, "ORDERS " + str.upper(security))
     myOrders = myOrdersSt.split(' ')[1:]
     orders = {}
