@@ -32,7 +32,7 @@ def myOrders():
     for tick in TICKERS:
         if tick in myOrders:
             ind = myOrders.index(tick)
-            orders[tick] = (myOrders[ind - 1], myOrders[ind + 1], myOrders[ind + 2])
+            orders[tick] = (myOrders[ind - 1], float(myOrders[ind + 1]), int(myOrders[ind + 2]))
 
     # print(orders)
     return orders
