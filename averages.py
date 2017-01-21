@@ -1,7 +1,8 @@
 import parse
 import client
+import jbdata
 
-secutities
+secutities = jbdata.secutities
 averages = {}
 def initalializeSecuritiesDict():
     for sec in parse.getTickers():

@@ -7,19 +7,21 @@ def run(user, password, *commands):
 
 
     data=user + " " + password + "\n" + "\n".join(commands) + "\nCLOSE_CONNECTION\n"
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-
-        sock.connect((HOST, PORT))
-        sock.sendall(bytes(data, "utf-8"))
-        sfile = sock.makefile()
-        rline = sfile.readline()
-        retString = ""
-        while rline:
-            retString += rline.strip()
+            sock.connect((HOST, PORT))
+            sock.sendall(bytes(data, "utf-8"))
+            sfile = sock.makefile()
             rline = sfile.readline()
-        # print(retString)
-        return retString
+            retString = ""
+            while rline:
+                retString += rline.strip()
+                rline = sfile.readline()
+            # print(retString)
+            return retString
+    except:
+        print("Socket Timed Out")
 
 
 
