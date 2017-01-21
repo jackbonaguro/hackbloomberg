@@ -11,16 +11,14 @@ def getTickers():
         i += 4
     return secList
 
+
 TICKERS = getTickers()
-
-
-
 
 def myCash():
     myCashSt = client.run(USERNAME, PASSWORD, "MY_CASH")
     myCash = myCashSt.split(' ')
     myCash = float(myCash[1])
-    print(myCash)
+    # print(myCash)
     return myCash
 
 
@@ -31,20 +29,20 @@ def mySecurities():
     for tick in TICKERS:
         ind = mySec.index(tick)
         securities[tick] = (int(mySec[ind + 1]), float(mySec[ind + 2]))
-    print(securities)
+    # print(securities)
     return securities
 
 
 
 def myOrders():
-    myOders = []
     myOrdersSt = client.run(USERNAME, PASSWORD, "MY_ORDERS")
     myOrders = myOrdersSt.split(' ')[1:]
-    orders = {}
-    for tick in TICKERS:
-        if tick in myOrders:
-            ind = myOrders.index(tick)
-            orders[tick] = (myOrders[ind - 1], float(myOrders[ind + 1]), int(myOrders[ind + 2]))
+    orders = []
+    # print(myOrders)
+    i = 0
+    while i in range(len(myOrders)):
+        orders.append((myOrders[i], myOrders[i + 1], float(myOrders[i + 2]), int(myOrders[i + 3])))
+        i += 4
 
     # print(orders)
     return orders
@@ -62,35 +60,35 @@ def securities():
 
 
 def orders(security):
-    myOders = []
     myOrdersSt = client.run(USERNAME, PASSWORD, "ORDERS " + str.upper(security))
     myOrders = myOrdersSt.split(' ')[1:]
-    orders = {}
-    for tick in TICKERS:
-        if tick in myOrders:
-            ind = myOrders.index(tick)
-            orders[tick] = (myOrders[ind - 1], float(myOrders[ind + 1]), int(myOrders[ind + 2]))
-
+    orders =[]
+    i = 0
+    while i in range(len(myOrders)):
+        orders.append((myOrders[i], float(myOrders[i + 2]), int(myOrders[i + 3])))
+        i += 4
     # print(orders)
     return orders
 
+
+
 def bid(ticker, price, shares):
-    print(client.run(USERNAME, PASSWORD, "BID " + str.upper(ticker) + " " + str(price) + " " + str(shares)))
+    return client.run(USERNAME, PASSWORD, "BID " + str.upper(ticker) + " " + str(price) + " " + str(shares))
 
 def ask(ticker, price, shares):
-    print(client.run(USERNAME, PASSWORD, "ASK " + str.upper(ticker) + " " + str(price) + " " + str(shares)))
+    return client.run(USERNAME, PASSWORD, "ASK " + str.upper(ticker) + " " + str(price) + " " + str(shares))
 
 def clearBid(ticker):
-    print(client.run(USERNAME, PASSWORD, "CLEAR_BID " + str.upper(ticker)))
+    return client.run(USERNAME, PASSWORD, "CLEAR_BID " + str.upper(ticker))
 
 def clearAsk(ticker):
-    print(client.run(USERNAME, PASSWORD, "CLEAR_ASK " + str.upper(ticker)))
+    return client.run(USERNAME, PASSWORD, "CLEAR_ASK " + str.upper(ticker))
 
 def subscribe():
-    print(client.run(USERNAME, PASSWORD, "SUBSCRIBE"))
+    return client.run(USERNAME, PASSWORD, "SUBSCRIBE")
 
 def subscribe():
-    print(client.run(USERNAME, PASSWORD, "UNSUBSCRIBE"))
+    return client.run(USERNAME, PASSWORD, "UNSUBSCRIBE")
 
 def close():
-    print(client.run(USERNAME, PASSWORD, "CLOSE_CONNECTION"))
+    return client.run(USERNAME, PASSWORD, "CLOSE_CONNECTION")

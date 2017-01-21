@@ -20,6 +20,7 @@ def bidAskMarket(ticker):
     for order in orders:
         orderType = order[0]
         orderPrice = order[1]
+        print(orderPrice)
         orderNumShares = order[2]
 
         if orderType == "BID":
@@ -55,7 +56,9 @@ def checkForOldOrders():
 
 
 
-
+def hasOrders():
+    for ticker in parse.getTickers():
+        bidAskMarket(ticker)
 
 
 #TODO market price
@@ -63,4 +66,9 @@ def checkForOldOrders():
 
 
 
-bidAskMarket("INTL")
+
+
+
+
+hasOrders()
+#bidAskMarket("FORD")
