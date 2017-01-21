@@ -1,6 +1,7 @@
 import parse
 import client
 import jbdata
+import data
 
 securities = jbdata.securities
 def initalializeSecuritiesDict():
