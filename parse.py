@@ -1,5 +1,6 @@
 import client
 
+TICKERS = ["AMZN", "DIS", "FB", "GOOGL", "IBM", "IVW", "KING", "KO", "NFLX", "TSLA"]
 USERNAME = "rcb"
 PASSWORD = "pass1"
 
@@ -17,14 +18,24 @@ def mySecurities():
     mySec = mySecSt.split(' ')
     for tick in securities.keys():
         ind = mySec.index(tick)
-        securities[tick] = (mySec[ind + 1], mySec[ind + 2])
+        securities[tick] = (int(mySec[ind + 1]), float(mySec[ind + 2]))
     print(securities)
     return securities
 
 
 
 def myOrders():
-    print(client.run(USERNAME, PASSWORD, "MY_ORDERS"))
+    myOders = []
+    myOrdersSt = client.run(USERNAME, PASSWORD, "MY_ORDERS")
+    myOrders = myOrdersSt.split(' ')[1:]
+    orders = {}
+    for tick in TICKERS:
+        if tick in myOrders:
+            ind = myOrders.index(tick)
+            orders[tick] = (myOrders[ind - 1], myOrders[ind + 1], myOrders[ind + 2])
+
+    # print(orders)
+    return orders
 
 def securities():
     print(client.run(USERNAME, PASSWORD, "SECURITIES"))
