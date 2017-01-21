@@ -3,11 +3,11 @@ import client
 
 import data
 
-securities = data.securities
+prices = data.prices
 
 def calculateMovingAverage(tick, length):
-    if len(securities[tick]) >= length:
-        return sum(securities[tick][-length:])/length
+    if len(prices[tick]) >= length:
+        return sum(prices[tick][-length:])/length
     else:
         return 0
 
