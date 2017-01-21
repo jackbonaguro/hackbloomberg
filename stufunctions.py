@@ -60,7 +60,7 @@ def executeTrades(trades):
         elif trade[1] == "ASK":
             parse.ask(ticker, price, shares)
             
-calcNetWorth(securities, cash):
+def calcNetWorth(securities, cash):
     total = 0
     for s in securities:
         total += s[0]*s[1]

@@ -16,6 +16,7 @@ def mainloop():
 		data.tickers = parse.getTickers()
 		try:
 			for t in data.tickers:
+				data.cash = parse.myCash()
 				try:
 					data.my_securities[t] = []
 				except:
@@ -37,8 +38,8 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
-			#if(time.time() - maintime > 30):
-			#	running = False
+			if(time.time() - maintime > 10):
+				running = False
 			starttime = time.time()
 
 			try:
@@ -62,7 +63,7 @@ def mainloop():
 						except:
 							print("Price calc failed")
 						try:
-							data.averages[t].append(averages.getAverages(t))
+							data.averages[t].append(averages.getAverages(t, int(data.a1), int(data.a2), int(data.a3)))
 						except:
 							print("Average calc failed")
 				except:
@@ -72,8 +73,10 @@ def mainloop():
 			#Run algorithm
 
 			try:
-
-				orders = algorithm.algorithm(data.tickers, data.prices, data.averages)
+				data.a1 = data.a1 * 1.01
+				data.a1 = data.a1 * 1.01
+				data.a1 = data.a1 * 1.01
+				orders = algorithm.algorithm(data.tickers, data.prices, data.averages, data.cash)
 			except:
 				print("Algo failed")
 
