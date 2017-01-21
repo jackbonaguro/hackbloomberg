@@ -3,7 +3,7 @@ import parse
 
 
 
-#average price of all asks and bids for ticker
+#returns (average bid price, average ask price, average market share price)
 def bidAskMarket(ticker):
     print("calculating market value per share for ticker: {}".format(ticker))
     orders = parse.orders(ticker)
@@ -13,62 +13,40 @@ def bidAskMarket(ticker):
     market = 0
 
 
-    numBidOrders = 0
-    numAskOrders = 0
-    totalorders = 0
+    numBidShares = 0
+    numAskShares = 0
+    totalShares = 0
 
     for order in orders:
+        print(order)
         orderType = order[0]
         orderPrice = order[1]
-        print(orderPrice)
         orderNumShares = order[2]
 
         if orderType == "BID":
             bid+= (orderPrice * orderNumShares)
             market+= (orderPrice * orderNumShares)
-            numBidOrders+=1
-            totalorders+=1
+            numBidShares+= orderNumShares
+            totalShares+= orderNumShares
         elif orderType == "ASK":
             ask+= (orderPrice * orderNumShares)
-            numAskOrders+=1 (orderPrice * orderNumShares)
-            totalorders+=1
+            market+= (orderPrice * orderNumShares)
+            numAskShares+= orderNumShares
+            totalShares+= orderNumShares
 
-    if numBidOrders > 0:
-        bidAvgPerShare = bid / numBidOrders
+    if numBidShares > 0:
+        bidAvgPerShare = bid / numBidShares
     else:
         bidAvgPerShare = -1
 
-    if numAskOrders > 0:
-        askAvgPerShare = ask / numAskOrders
+    if numAskShares > 0:
+        askAvgPerShare = ask / numAskShares
     else:
         askAvgPerShare = -1
 
-    if totalorders > 0:
-        markAvgPerShare = market / totalorders
+    if totalShares > 0:
+        markAvgPerShare = market / totalShares
     else:
         markAvgPerShare = -1
 
     return (bidAvgPerShare, askAvgPerShare, markAvgPerShare)
-
-
-def checkForOldOrders():
-    print("checking for old orders")
-
-
-
-def hasOrders():
-    for ticker in parse.getTickers():
-        bidAskMarket(ticker)
-
-
-#TODO market price
-
-
-
-
-
-
-
-
-hasOrders()
-#bidAskMarket("FORD")
