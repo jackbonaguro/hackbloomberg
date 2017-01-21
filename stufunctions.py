@@ -7,18 +7,15 @@ import parse
 def bidAskMarket(ticker):
     #print("calculating market value per share for ticker: {}".format(ticker))
     orders = parse.orders(ticker)
-
     bid = 0
     ask = 0
     market = 0
-
 
     numBidShares = 0
     numAskShares = 0
     totalShares = 0
 
     for order in orders:
-        print(order)
         orderType = order[0]
         orderPrice = order[1]
         orderNumShares = order[2]
