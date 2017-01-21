@@ -1,13 +1,11 @@
 import parse
 import client
 import time
-<<<<<<< HEAD
 import data
-=======
 import averages
+import algorithm
+import algorithm.data as data
 
-avgs = {}
-parse.TICKERS
 for tick in parse.TICKERS:
 	averages[tick] = []
 
@@ -24,6 +22,7 @@ def mainloop():
 		running = True
 		while(running):
 			starttime = time.time()
+			
 			#Update data from server
 			ms = parse.mySecurities()
 			for t in data.tickers:
@@ -31,18 +30,15 @@ def mainloop():
 			s = parse.securities()
 			for t in data.tickers:
 				data.securities[t].append(s[t])
-			"""for t in data.tickers:
-				o = parse.orders(t)
-				data.orders[t] = o"""
+			for t in data.tickers:
+				data.prices[t] = stufunctions.bidAskMarket(t)
+				data.averages[t] = averages.getAverages(t)
 
 			#Run algorithm
+			oreders = algorithm.algorithm(data.tickers, data.prices, data.averages)
 
 			#Execute Trades
-			#Run algorithm
-			for tick in parse.TICKERS:
-				avgs.append(averages.getAverages(tick))
-			#Execute Trades
-
+		
 			#Wait for 1 sec
 			while((time.time() - starttime) < 1):
 				pass

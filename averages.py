@@ -1,11 +1,8 @@
 import parse
 import client
-import jbdata
+import data
 
-securities = jbdata.securities
-def initalializeSecuritiesDict():
-    for sec in parse.getTickers():
-        averages[sec] = []
+securities = data.securities
 
 def calculateMovingAverage(tick, length):
     if len(securities[tick]) >= length:
