@@ -62,7 +62,7 @@ def mainloop():
 						except:
 							print("Price calc failed")
 						try:
-							data.averages[t] = averages.getAverages(t)
+							data.averages[t].append(averages.getAverages(t))
 						except:
 							print("Average calc failed")
 				except:
