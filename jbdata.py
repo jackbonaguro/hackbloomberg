@@ -27,4 +27,5 @@ def dataloop():
 		parse.myCash()
 		print(parse.mySecurities())
 		i += 1
+		pass
 
