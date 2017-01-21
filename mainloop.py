@@ -11,6 +11,7 @@ for tick in parse.TICKERS:
 	data.averages[tick] = []
 
 def mainloop():
+	maintime = time.time()
 	try:
 		data.tickers = parse.getTickers()
 		try:
@@ -36,6 +37,8 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
+			if (time.time() - maintime > 5):
+				running = False
 			starttime = time.time()
 			
 			try:
