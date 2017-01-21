@@ -50,3 +50,16 @@ def bidAskMarket(ticker):
         markAvgPerShare = -1
 
     return (bidAvgPerShare, askAvgPerShare, markAvgPerShare)
+
+#trades - [(ticker, type,  price, shares)]
+def executeTrades(trades):
+    print("executing trades")
+    for trade in trades:
+        ticker = trade[0]
+        price = trade[2]
+        shares = trade[3]
+        if trade[1] == "BID":
+            parse.bid(ticker, price, shares)
+        elif trade[1] == "ASK":
+            parse.ask(ticker, price, shares)
+            
