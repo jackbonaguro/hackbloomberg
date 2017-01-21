@@ -3,6 +3,8 @@ import client
 import time
 import data
 import averages
+import algorithm
+import algorithm.data as data
 
 for tick in parse.TICKERS:
 	averages[tick] = []
@@ -33,9 +35,10 @@ def mainloop():
 				data.averages[t] = averages.getAverages(t)
 
 			#Run algorithm
+			oreders = algorithm.algorithm(data.tickers, data.prices, data.averages)
 
 			#Execute Trades
-
+		
 			#Wait for 1 sec
 			while((time.time() - starttime) < 1):
 				pass
