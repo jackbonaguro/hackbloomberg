@@ -37,8 +37,8 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
-			if(time.time() - maintime > 5):
-				running = False
+			#if(time.time() - maintime > 30):
+			#	running = False
 			starttime = time.time()
 
 			try:

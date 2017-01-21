@@ -1,7 +1,13 @@
+
+
 def algorithm(tickers, prices, averages):
 	orders = []
 	for t in tickers:
-		if (averages[t][-1][0] > averages[t][-1][1]) and (averages[t][-2][0] < averages[t][-2][1]):
+		if(len(averages[t]) <= 5):
+			return []
+		elif (averages[t][-1][0] > averages[t][-1][1]) and (averages[t][-2][0] < averages[t][-2][1]):
+
+			#Intersections
 			flag = False
 			for i in range(5):
 				if (averages[t][(-i-2)][0] > averages[t][(-i-2)][2]):
@@ -9,6 +15,7 @@ def algorithm(tickers, prices, averages):
 			if not flag:
 				#bid
 				orders.append([t, "BID", (prices[t][-1][1] + .01), 2])
+
 		elif (averages[t][-1][0] < averages[t][-1][1]) and (averages[t][-2][0] > averages[t][-2][0]):
 			flag = False
 			for i in range(5):
