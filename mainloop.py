@@ -10,7 +10,6 @@ avgs = {}
 parse.TICKERS
 for tick in parse.TICKERS:
 	averages[tick] = []
->>>>>>> 9bbb7272e1f1be7884bad02c17f368ae5c2bcdc6
 
 def mainloop():
 	try:
@@ -36,16 +35,13 @@ def mainloop():
 				o = parse.orders(t)
 				data.orders[t] = o"""
 
-<<<<<<< HEAD
 			#Run algorithm
 
 			#Execute Trades
-=======
-		#Run algorithm
-		for tick in parse.TICKERS:
-			avgs.append(averages.getAverages(tick))
-		#Execute Trades
->>>>>>> 9bbb7272e1f1be7884bad02c17f368ae5c2bcdc6
+			#Run algorithm
+			for tick in parse.TICKERS:
+				avgs.append(averages.getAverages(tick))
+			#Execute Trades
 
 			#Wait for 1 sec
 			while((time.time() - starttime) < 1):
