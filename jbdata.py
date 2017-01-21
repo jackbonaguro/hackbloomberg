@@ -28,4 +28,3 @@ def dataloop():
 		print(parse.mySecurities())
 		i += 1
 		pass
-
