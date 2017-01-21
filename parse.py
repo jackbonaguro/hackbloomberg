@@ -4,10 +4,24 @@ USERNAME = "rcb"
 PASSWORD = "pass1"
 
 def myCash():
-    print(client.run(USERNAME, PASSWORD, "MY_CASH"))
+    myCashSt = client.run(USERNAME, PASSWORD, "MY_CASH")
+    myCash = myCashSt.split(' ')
+    myCash = float(myCash[1])
+    print(myCash)
+    return myCash
+
 
 def mySecurities():
-    print(client.run(USERNAME, PASSWORD, "MY_SECURITIES"))
+    securities = {"AMZN" : [], "DIS" : [], "FB" : [], "GOOGL" : [], "IBM" : [], "IVW" : [], "KING" : [], "KO" : [], "NFLX" : [],"TSLA" : []}
+    mySecSt = client.run(USERNAME, PASSWORD, "MY_SECURITIES")
+    mySec = mySecSt.split(' ')
+    for tick in securities.keys():
+        ind = mySec.index(tick)
+        securities[tick] = (mySec[ind + 1], mySec[ind + 2])
+    print(securities)
+    return securities
+
+
 
 def myOrders():
     print(client.run(USERNAME, PASSWORD, "MY_ORDERS"))
