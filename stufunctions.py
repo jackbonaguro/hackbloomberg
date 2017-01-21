@@ -5,7 +5,7 @@ import parse
 
 #returns (average bid price, average ask price, average market share price)
 def bidAskMarket(ticker):
-    print("calculating market value per share for ticker: {}".format(ticker))
+    #print("calculating market value per share for ticker: {}".format(ticker))
     orders = parse.orders(ticker)
 
     bid = 0
