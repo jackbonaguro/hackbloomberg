@@ -3,15 +3,13 @@ import client
 import jbdata
 
 securities = jbdata.securities
-
-averages = {}
 def initalializeSecuritiesDict():
     for sec in parse.getTickers():
         averages[sec] = []
 
 def calculateMovingAverage(tick, length):
-    if len(averages[tick]) >= length:
-        return sum(averages[tick][-length:])/length
+    if len(securities[tick]) >= length:
+        return sum(securities[tick][-length:])/length
     else:
         return 0
 
