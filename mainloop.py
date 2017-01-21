@@ -18,10 +18,10 @@ def mainloop():
 		for t in data.tickers:
 			data.my_securities[t] = []
 			data.securities[t] = []
-			#data.orders[t] = []
-			averages = {}
-			prices = {}
-			my_orders = {}
+
+			data.averages[t] = []
+			data.prices[t] = []
+			data.my_orders[t] = []
 		running = True
 		while(running):
 			starttime = time.time()
