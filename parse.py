@@ -12,8 +12,7 @@ def getTickers():
     return secList
 
 
-while(time() < nextSecond) {}
-nextSec +=1
+TICKERS = getTickers()
 
 def myCash():
     myCashSt = client.run(USERNAME, PASSWORD, "MY_CASH")
@@ -38,11 +37,12 @@ def mySecurities():
 def myOrders():
     myOrdersSt = client.run(USERNAME, PASSWORD, "MY_ORDERS")
     myOrders = myOrdersSt.split(' ')[1:]
-    orders = {}
-    for tick in TICKERS:
-        if tick in myOrders:
-            ind = myOrders.index(tick)
-            orders[tick] = (myOrders[ind - 1], float(myOrders[ind + 1]), int(myOrders[ind + 2]))
+    orders = []
+    print(myOrders)
+    i = 0
+    while i in range(len(myOrders)):
+        orders.append((myOrders[i], myOrders[i + 1], float(myOrders[i + 2]), int(myOrders[i + 3])))
+        i += 4
 
     # print(orders)
     return orders
@@ -62,14 +62,15 @@ def securities():
 def orders(security):
     myOrdersSt = client.run(USERNAME, PASSWORD, "ORDERS " + str.upper(security))
     myOrders = myOrdersSt.split(' ')[1:]
-    orders = {}
-    for tick in TICKERS:
-        if tick in myOrders:
-            ind = myOrders.index(tick)
-            orders[tick] = (myOrders[ind - 1], float(myOrders[ind + 1]), int(myOrders[ind + 2]))
-
+    orders =[]
+    i = 0
+    while i in range(len(myOrders)):
+        orders.append((myOrders[i], float(myOrders[i + 2]), int(myOrders[i + 3])))
+        i += 4
     # print(orders)
     return orders
+
+
 
 def bid(ticker, price, shares):
     print(client.run(USERNAME, PASSWORD, "BID " + str.upper(ticker) + " " + str(price) + " " + str(shares)))
