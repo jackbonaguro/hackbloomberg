@@ -60,3 +60,11 @@ def executeTrades(trades):
         elif trade[1] == "ASK":
             parse.ask(ticker, price, shares)
             
+def calcNetWorth(securities):
+    try:
+        total = 0
+        for s in securities.keys():
+            total += securities[s][-1][0]*securities[s][-1][1]
+        return total
+    except:
+        print("NW Failed")
