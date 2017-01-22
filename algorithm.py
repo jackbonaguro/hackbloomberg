@@ -24,3 +24,14 @@ def algorithm(tickers, prices, averages, cash):
 				#sell
 				orders.append([t, "ASK", (prices[t][-1][0] - .01), (cash/(4*(prices[t][-1][0] - .01)))])
 	return orders
+
+
+def buyUp(tickers, prices, averages, cash):
+	sum = 0
+	orders = []
+	for t in tickers:
+		sum += (prices[t][-1][1] + .01)
+	numToBuy = int((cash*.75)/sum)
+	for t in tickers:
+		orders.append([t, "BID", (prices[t][-1][1] + .01), numToBuy])
+	return orders

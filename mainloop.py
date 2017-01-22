@@ -38,10 +38,11 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
-			if(time.time() - maintime > 10):
+			if(time.time() - maintime > 30):
 				running = False
 			starttime = time.time()
 
+			data.cash = parse.myCash()
 			try:
 				#Update data from server
 				try:
@@ -73,10 +74,25 @@ def mainloop():
 			#Run algorithm
 
 			try:
-				data.a1 = data.a1 * 1.01
-				data.a1 = data.a1 * 1.01
-				data.a1 = data.a1 * 1.01
-				orders = algorithm.algorithm(data.tickers, data.prices, data.averages, data.cash)
+				orders = []
+				try:
+					data.a1 = data.a1 * 1.01
+					data.a1 = data.a1 * 1.01
+					data.a1 = data.a1 * 1.01
+					try:
+						if(data.cash - stufunctions.calcNetWorth(data.my_securities) > 0):
+							data.a1 = 2
+							data.a2 = 5
+							data.a3 = 20
+							try:
+								orders += algorithm.buyUp(data.tickers, data.prices, data.averages, data.cash)
+							except:
+								print("1")
+					except:
+						print("2")
+				except:
+					print("buyup failed")
+				orders += algorithm.algorithm(data.tickers, data.prices, data.averages, data.cash)
 			except:
 				print("Algo failed")
 
