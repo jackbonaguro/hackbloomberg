@@ -38,8 +38,8 @@ def mainloop():
 			print("Init failed")
 		running = True
 		while(running):
-			if(time.time() - maintime > 30):
-				running = False
+			#if(time.time() - maintime > 30):
+			#	running = False
 			starttime = time.time()
 
 			data.cash = parse.myCash()
@@ -80,11 +80,12 @@ def mainloop():
 					data.a1 = data.a1 * 1.01
 					data.a1 = data.a1 * 1.01
 					try:
-						if(data.cash - stufunctions.calcNetWorth(data.my_securities) > 0):
+						if(data.cash - stufunctions.calcSecWorth(data.my_securities) > 0):
 							data.a1 = 2
 							data.a2 = 5
 							data.a3 = 20
 							try:
+								print("Buying up")
 								orders += algorithm.buyUp(data.tickers, data.prices, data.averages, data.cash)
 							except:
 								print("1")
@@ -98,6 +99,9 @@ def mainloop():
 
 			#Execute Trades
 			try:
+				for order in orders:
+					if order[-1] < 1:
+						orders.remove(order)
 				stufunctions.executeTrades(orders)
 			except:
 				print("Ordering failed")
@@ -108,4 +112,5 @@ def mainloop():
 	except:
 		print("Main loop failed")
 
-mainloop()
+while(1):
+	mainloop()

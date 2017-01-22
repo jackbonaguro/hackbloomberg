@@ -50,17 +50,20 @@ def bidAskMarket(ticker):
 
 #trades - [(ticker, type,  price, shares)]
 def executeTrades(trades):
-    print("executing trades")
+    print("executing trades:")
+    print(str(trades))
     for trade in trades:
         ticker = trade[0]
         price = trade[2]
         shares = trade[3]
+        print("Shares: "+str(shares))
+        #print("Price: "+str(price))
         if trade[1] == "BID":
-            parse.bid(ticker, price, shares)
+            parse.bid(ticker, price, int(shares))
         elif trade[1] == "ASK":
-            parse.ask(ticker, price, shares)
+            print(parse.ask(ticker, price, int(shares)))
             
-def calcNetWorth(securities):
+def calcSecWorth(securities):
     try:
         total = 0
         for s in securities.keys():
