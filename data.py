@@ -6,6 +6,6 @@ averages = {}
 prices = {}
 cash = 0
 
-a1 = 2
-a2 = 5
-a3 = 15
+a1 = 5
+a2 = 10
+a3 = 25

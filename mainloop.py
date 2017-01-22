@@ -81,9 +81,9 @@ def mainloop():
 					data.a1 = data.a1 * 1.01
 					try:
 						if(data.cash - stufunctions.calcSecWorth(data.my_securities) > 0):
-							data.a1 = 2
-							data.a2 = 5
-							data.a3 = 20
+							data.a1 = 5
+							data.a2 = 10
+							data.a3 = 25
 							try:
 								print("Buying up")
 								orders += algorithm.buyUp(data.tickers, data.prices, data.averages, data.cash)
@@ -93,7 +93,7 @@ def mainloop():
 						print("2")
 				except:
 					print("buyup failed")
-				orders += algorithm.algorithm(data.tickers, data.prices, data.averages, data.cash)
+				orders += algorithm.algorithm(data.tickers, data.prices, data.averages, data.cash, data.my_securities)
 			except:
 				print("Algo failed")
 

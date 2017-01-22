@@ -1,6 +1,6 @@
 
 
-def algorithm(tickers, prices, averages, cash):
+def algorithm(tickers, prices, averages, cash, securities):
 	orders = []
 	for t in tickers:
 		if(len(averages[t]) <= 5):
@@ -13,7 +13,7 @@ def algorithm(tickers, prices, averages, cash):
 					flag = True
 			if not flag:
 				#bid
-				orders.append([t, "BID", (prices[t][-1][1] + .01), (cash/(4*(prices[t][-1][1] * 1.01)))])
+				orders.append([t, "BID", (prices[t][-1][1] * 1.02), (cash/(4*(prices[t][-1][1] * 1.02)))])
 
 		elif (averages[t][-1][0] < averages[t][-1][1]) and (averages[t][-2][0] > averages[t][-2][1]):
 			flag = False
@@ -22,7 +22,7 @@ def algorithm(tickers, prices, averages, cash):
 					flag = True
 			if not flag:
 				#sell
-				orders.append([t, "ASK", (prices[t][-1][0] * .99), (cash/(4*(prices[t][-1][0] * .99)))])
+				orders.append([t, "ASK", (prices[t][-1][0] * .98), securities[t][-1][0]])
 	return orders
 
 
